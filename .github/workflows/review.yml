@@ -1,18 +1,5 @@
-name: build
-on:
-  push:
-    branches:
-      - master
-    tags:
-      - '!*'
-    paths:
-      - example/*
-      - src/*
-      - test/*
-      - __tests__/*
-      - '*.json'
-      - yarn.lock
-      - .github/**/*.yml
+name: review
+on: pull_request
 
 jobs:
   lint:
@@ -52,30 +39,10 @@ jobs:
         with:
           node-version: 12.x
       - run: npx yarn bootstrap
-      - uses: paambaati/codeclimate-action@v2.5.3
-        env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+      - run: npx yarn test --coverage
+      - uses: romeovs/lcov-reporter-action@v0.2.16
         with:
-          coverageCommand: npx yarn test --coverage
-          debug: true
-
-  publish:
-    needs: [test, lint]
-    name: Publish example app to Expo 🚀
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - uses: expo/expo-github-action@v5
-        with:
-          expo-version: 3.x
-          expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
-          expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
-      - run: npx yarn bootstrap
-      - working-directory: example
-        run: expo publish
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   # chromatic:
   #   needs: [test, lint]
@@ -91,3 +58,26 @@ jobs:
   #       working-directory: example
   #       env:
   #         CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+  expo-publish:
+    needs: [test, lint]
+    name: Publish to Expo 🚀
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - uses: expo/expo-github-action@v5
+        with:
+          expo-version: 3.x
+          expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
+          expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
+      - run: npx yarn bootstrap
+      - run: expo publish --release-channel=pr-${{ github.event.number }}
+        working-directory: example
+      - uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: App is ready for review, you can [see it here](https://expo.io/@muyaszed/projects/react-native-paper-css-example?release-channel=pr-${{ github.event.number }}).
