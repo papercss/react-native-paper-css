@@ -57,6 +57,7 @@ jobs:
       - run: npx yarn chromatic
         working-directory: example
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
   expo-publish:
