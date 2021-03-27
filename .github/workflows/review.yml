@@ -80,4 +80,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: App is ready for review, you can [see it here](https://expo.io/@daniakash/rex-state-example?release-channel=pr-${{ github.event.number }}).
+          msg: App is ready for review, you can [see it here](https://expo.io/@muyaszed/projects/react-native-paper-css-example?release-channel=pr-${{ github.event.number }}).
