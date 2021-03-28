@@ -12,7 +12,8 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic"
+    "chromatic": "npx chromatic",
+    "postinstall": "rm -rf ./node_modules/expo-font/"
   },
   "dependencies": {
     "expo": "^40.0.0",
