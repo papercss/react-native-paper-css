@@ -1,18 +1,12 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import PaperCss from 'react-native-paper-css';
+import { StyleSheet, View } from 'react-native';
+import { Text } from 'react-native-paper-css';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    PaperCss.multiply(3, 7).then(setResult);
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Result</Text>
     </View>
   );
 }
