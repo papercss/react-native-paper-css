@@ -12,7 +12,7 @@ type TextColors =
   | 'warning'
   | 'muted';
 
-interface Props {
+export interface Props {
   color?: TextColors;
   style?: CSSProperties;
 }

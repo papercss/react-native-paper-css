@@ -1,1 +1,1 @@
-export { default as Text } from './components/text/Text';
+export { default as Text, Props as TextProps } from './components/text/Text';
