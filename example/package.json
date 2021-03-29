@@ -16,6 +16,7 @@
     "postinstall": "rm -rf ./node_modules/expo-font/"
   },
   "dependencies": {
+    "@babel/runtime": "^7.13.10",
     "expo": "^40.0.0",
     "expo-splash-screen": "~0.8.1",
     "react": "16.13.1",
@@ -26,7 +27,6 @@
   },
   "devDependencies": {
     "@babel/core": "~7.12.10",
-    "@babel/runtime": "^7.9.6",
     "@expo/webpack-config": "^0.12.63",
     "@storybook/addon-actions": "^6.1.21",
     "@storybook/addon-essentials": "^6.1.21",
