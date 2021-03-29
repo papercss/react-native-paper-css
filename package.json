@@ -47,7 +47,6 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.13.10",
     "@commitlint/config-conventional": "^11.0.0",
     "@expo-google-fonts/neucha": "^0.1.0",
     "@react-native-community/eslint-config": "^2.0.0",
