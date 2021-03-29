@@ -141,7 +141,8 @@
   },
   "eslintIgnore": [
     "node_modules/",
-    "lib/"
+    "lib/",
+    "example/storybook-static"
   ],
   "prettier": {
     "quoteProps": "consistent",
