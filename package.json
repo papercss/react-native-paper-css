@@ -142,7 +142,7 @@
   "eslintIgnore": [
     "node_modules/",
     "lib/",
-    "example/storybook-static"
+    "example/build"
   ],
   "prettier": {
     "quoteProps": "consistent",

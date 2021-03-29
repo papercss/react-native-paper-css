@@ -61,3 +61,4 @@ lib/
 
 #storybook
 storybook-static/
+build/
