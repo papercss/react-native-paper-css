@@ -4,7 +4,7 @@ import AppLoading from 'expo-app-loading';
 import { useFonts, Neucha_400Regular } from '@expo-google-fonts/neucha';
 import { getDefaultTextStyle } from './Text.style';
 
-type TextColors =
+export type TextColors =
   | 'primary'
   | 'secondary'
   | 'danger'
