@@ -93,3 +93,21 @@ jobs:
         working-directory: example
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+  netlify-publish:
+    needs: [test, lint]
+    name: Publish storybook to Netlify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+      - run: npx yarn bootstrap
+      - run: npx yarn build-storybook
+        working-directory: example
+      - uses: danakim/gh-action-deploy-netlify@master
+        with:
+          AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          DEPLOY_PROD: true
