@@ -89,10 +89,12 @@ jobs:
         with:
           node-version: 12.x
       - run: npx yarn bootstrap
-      - run: npx yarn chromatic
+      - use: chromaui/action@v1
         working-directory: example
-        env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitZeroOnChanges: true
 
   netlify-publish:
     needs: [test, lint]
