@@ -141,7 +141,8 @@
   },
   "eslintIgnore": [
     "node_modules/",
-    "lib/"
+    "lib/",
+    "example/build"
   ],
   "prettier": {
     "quoteProps": "consistent",
