@@ -89,7 +89,7 @@ jobs:
         with:
           node-version: 12.x
       - run: npx yarn bootstrap
-      - use: chromaui/action@v1
+      - uses: chromaui/action@v1
         working-directory: example
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
