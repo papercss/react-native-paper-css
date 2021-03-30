@@ -96,7 +96,7 @@ jobs:
 
   netlify-publish:
     needs: [test, lint]
-    name: Publish storybook to Netlify
+    name: Publish storybook to Netlify 🧪
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
