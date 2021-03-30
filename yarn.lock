@@ -1360,6 +1360,11 @@
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/neucha/-/neucha-0.1.0.tgz#1d3a48a2b088f1778ca287877581ef0236861596"
   integrity sha512-ZnPwSA9doD4gRhiAgbPtn0lLSUtQHcG5m5mMBKcx4KEqQnjvkfpfAlbhWT+JfieSnpq/PEJ2OO1dDA0E6WIphw==
 
+"@expo-google-fonts/patrick-hand-sc@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/patrick-hand-sc/-/patrick-hand-sc-0.1.0.tgz#c473b70206cc571917528bf02d3d2f94f3ad4605"
+  integrity sha512-hxXSHUVj7ztBtcctkN4qt73gjCfqvMaKEqBERsAUPF/pDU49y/D9XGfmzyCWGJDvhYtzx5CR/z7gFAUKa2uXDw==
+
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-1.0.23.tgz#a05ec1b935c4b3a7e35826c891ce852dde0e99d7"

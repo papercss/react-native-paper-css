@@ -3,6 +3,7 @@ import { render, waitFor } from '@testing-library/react-native';
 import '@testing-library/jest-native';
 import Text, { TextColors } from '../../components/text/Text';
 import Colors from '../../constants/Colors';
+import { mainFont } from '../../constants/Fonts';
 
 describe('Text', () => {
   test('renders children properly', async () => {
@@ -21,7 +22,7 @@ describe('Text', () => {
       expect(queryByText('Paper CSS')).toHaveStyle({
         fontSize: 16,
         color: Colors.primary,
-        fontFamily: 'Neucha_400Regular',
+        fontFamily: mainFont,
       });
       unmount();
     });

@@ -4,6 +4,7 @@ import '@testing-library/jest-native';
 import HeaderText, { HeaderSize } from '../../components/headerText/HeaderText';
 import Colors from '../../constants/Colors';
 import Header from '../../constants/HeaderSize';
+import { secondaryFont } from '../../constants/Fonts';
 
 describe('HeaderText', () => {
   test('renders children properly', async () => {
@@ -25,7 +26,7 @@ describe('HeaderText', () => {
     await waitFor(() => {
       expect(queryByText('Paper CSS')).toHaveStyle({
         color: Colors.primary,
-        fontFamily: 'Patrick Hand SC',
+        fontFamily: secondaryFont,
         fontSize: 24,
       });
       unmount();
@@ -33,7 +34,7 @@ describe('HeaderText', () => {
   });
 
   describe('renders header', () => {
-    const colorPropSelections: HeaderSize[] = [
+    const headerSizeSelections: HeaderSize[] = [
       'H1',
       'H2',
       'H3',
@@ -42,7 +43,7 @@ describe('HeaderText', () => {
       'H6',
     ];
 
-    colorPropSelections.forEach(async (selection) => {
+    headerSizeSelections.forEach(async (selection) => {
       test(`with the right size for ${selection}`, async () => {
         const { queryByText, unmount } = render(
           <HeaderText headerSize={selection}>{'Paper CSS'}</HeaderText>
