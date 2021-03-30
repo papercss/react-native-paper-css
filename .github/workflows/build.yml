@@ -19,8 +19,8 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-node@main
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
         with:
           node-version: 12.x
       - run: npx yarn bootstrap
@@ -35,8 +35,8 @@ jobs:
     name: test/node ${{ matrix.node }}/${{ matrix.platform }}
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-node@main
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node }}
       - run: npx yarn bootstrap
@@ -47,8 +47,8 @@ jobs:
     name: coverage
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-node@main
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
         with:
           node-version: 12.x
       - run: npx yarn bootstrap
@@ -96,18 +96,28 @@ jobs:
 
   netlify-publish:
     needs: [test, lint]
-    name: Publish storybook to Netlify 🧪
+    name: Publish storybook to Netlify
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-node@main
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
           node-version: 12.x
       - run: npx yarn bootstrap
       - run: npx yarn build-storybook
         working-directory: example
-      - uses: danakim/gh-action-deploy-netlify@main
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1.11
         with:
-          AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          DEPLOY_PROD: true
+          publish-dir: './example/build'
+          production-branch: main
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy from GitHub Actions'
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
