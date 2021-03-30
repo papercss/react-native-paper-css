@@ -6,8 +6,8 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
         with:
           node-version: 12.x
       - run: npx yarn bootstrap
@@ -22,8 +22,8 @@ jobs:
     name: test/node ${{ matrix.node }}/${{ matrix.platform }}
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
         with:
           node-version: ${{ matrix.node }}
       - run: npx yarn bootstrap
@@ -34,8 +34,8 @@ jobs:
     name: coverage
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
         with:
           node-version: 12.x
       - run: npx yarn bootstrap
@@ -78,7 +78,7 @@ jobs:
       - run: npx yarn bootstrap
       - run: expo publish --release-channel=pr-${{ github.event.number }}
         working-directory: example
-      - uses: unsplash/comment-on-pr@master
+      - uses: unsplash/comment-on-pr@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
