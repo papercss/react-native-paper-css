@@ -96,7 +96,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          storybookBuildDir: './example/build'
+          storybookBuildDir: 'example/build'
           exitZeroOnChanges: true
 
   netlify-publish:
