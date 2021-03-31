@@ -6,6 +6,11 @@ import Colors from '../../constants/Colors';
 import { mainFont } from '../../constants/Fonts';
 
 describe('Text', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+    jest.resetAllMocks();
+  });
+
   test('renders children properly', async () => {
     const renderedText = 'deafult text';
     const { queryByText, unmount } = render(<Text>{renderedText}</Text>);

@@ -7,6 +7,11 @@ import Header from '../../constants/HeaderSize';
 import { secondaryFont } from '../../constants/Fonts';
 
 describe('HeaderText', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+    jest.resetAllMocks();
+  });
+
   test('renders children properly', async () => {
     const renderedText = 'deafult text';
     const { queryByText, unmount } = render(
