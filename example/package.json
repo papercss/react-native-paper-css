@@ -12,7 +12,7 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o ./build",
-    "chromatic": "npx chromatic",
+    "chromatic": "npx chromatic --exit-zero-on-changes",
     "postinstall": "rm -rf ./node_modules/expo-font/"
   },
   "dependencies": {
