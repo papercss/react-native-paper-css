@@ -1,20 +1,13 @@
-import React, { CSSProperties } from 'react';
-import { Text as TextComponent } from 'react-native';
+import React from 'react';
+import { Text as TextComponent, TextStyle } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts, Neucha_400Regular } from '@expo-google-fonts/neucha';
 import { getDefaultTextStyle } from './Text.style';
-
-export type TextColors =
-  | 'primary'
-  | 'secondary'
-  | 'danger'
-  | 'success'
-  | 'warning'
-  | 'muted';
+import type { ThemeColors } from 'src/constants/Colors';
 
 export interface Props {
-  color?: TextColors;
-  style?: CSSProperties;
+  color?: ThemeColors;
+  style?: TextStyle;
 }
 
 const Text = ({
@@ -31,7 +24,7 @@ const Text = ({
   }
 
   return (
-    <TextComponent style={[getDefaultTextStyle(color), style]}>
+    <TextComponent {...otherProps} style={[getDefaultTextStyle(color), style]}>
       {otherProps.children}
     </TextComponent>
   );

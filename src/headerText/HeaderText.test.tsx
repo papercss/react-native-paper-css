@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react-native';
 import '@testing-library/jest-native';
-import HeaderText, { HeaderSize } from '../../components/headerText/HeaderText';
-import Colors from '../../constants/Colors';
-import Header from '../../constants/HeaderSize';
-import { secondaryFont } from '../../constants/Fonts';
+import HeaderText, { HeaderSize } from './HeaderText';
+import Colors from '../constants/Colors';
+import Header from '../constants/HeaderSize';
+import { secondaryFont } from '../constants/Fonts';
 
 describe('HeaderText', () => {
   afterEach(() => {

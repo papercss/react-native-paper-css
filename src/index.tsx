@@ -1,5 +1,6 @@
-export { default as Text, Props as TextProps } from './components/text/Text';
+export { default as Text, Props as TextProps } from './text/Text';
 export {
   default as HeaderText,
   Props as HeaderTextProps,
-} from './components/headerText/HeaderText';
+} from './headerText/HeaderText';
+export { default as Button, Props as ButtonProps } from './button/Button';
