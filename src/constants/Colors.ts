@@ -19,7 +19,7 @@ const lightenDarkenColor = (color: string, percent: number) => {
   );
 };
 
-const disabledColor = (color: string) => {
+export const disabledColor = (color: string) => {
   return `${color}80`;
 };
 

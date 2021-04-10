@@ -3,11 +3,16 @@ import type { ButtonSize } from './Button';
 
 interface Config {
   size: ButtonSize;
-  childHeight: number;
+  additionalHeight?: number;
+  additionalWidth?: number;
+  titleWidthValue?: number;
+  titleHeightValue?: number;
 }
 
 export interface Styles {
+  mainContainer: ViewStyle;
   buttonContainer: ViewStyle;
+  titleWrapper: ViewStyle;
   title: TextStyle;
 }
 
@@ -50,20 +55,24 @@ const getFontSize = (size: ButtonSize) => {
   }
 };
 
-export const buttonStyle = ({ size, childHeight }: Config) => {
+export const buttonStyle = ({ size }: Config) => {
   return StyleSheet.create<Styles>({
+    mainContainer: {
+      flexDirection: 'row',
+    },
     buttonContainer: {
       alignItems: 'center',
-      marginTop: 5,
-      marginBottom: 5,
+      justifyContent: 'center',
+    },
+    titleWrapper: {
+      position: 'absolute',
     },
     title: {
       fontSize: getFontSize(size),
-      position: 'absolute',
       padding: 10,
-      top: '50%',
-      marginTop: -(childHeight / 2),
       textAlign: 'center',
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      minWidth: useButtonWidth(size) + 5,
     },
   });
 };

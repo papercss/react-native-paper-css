@@ -8,9 +8,6 @@ import type { TextProps } from '../../../../src';
 export default {
   title: 'Example/Text',
   component: Text,
-  argTypes: {
-    color: { control: 'select' },
-  },
 } as Meta;
 
 const Template: Story<TextProps & DefaultText['props']> = (args) => (

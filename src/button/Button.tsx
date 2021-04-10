@@ -1,9 +1,9 @@
 import React from 'react';
-import { LayoutChangeEvent, TouchableOpacity } from 'react-native';
+import { LayoutChangeEvent, TouchableOpacity, View } from 'react-native';
 import * as Linking from 'expo-linking';
 import Text from '../text/Text';
 import { useButtonHeight, useButtonWidth } from './Button.style';
-import Colors, { ThemeColors } from '../constants/Colors';
+import Colors, { disabledColor, ThemeColors } from '../constants/Colors';
 import Border, { BorderType } from '../shared/Border';
 import { useButtonData } from './useButtonData';
 
@@ -20,13 +20,14 @@ export interface Props {
   block?: boolean;
   disabled?: boolean;
   link?: string;
+  parentWidth?: number;
   onPress?: () => void;
 }
 
 const Button = ({
   children,
   size = 'default',
-  bgColor = 'white',
+  bgColor = '#ffffff',
   textColor = Colors.primary,
   buttonType,
   outline = false,
@@ -34,9 +35,10 @@ const Button = ({
   block,
   disabled = false,
   link,
+  parentWidth,
   onPress,
 }: Props) => {
-  const [style, data] = useButtonData(size, block);
+  const [style, data] = useButtonData(size, block, parentWidth);
   const [isPressed, setIsPressed] = React.useState(false);
   const getWidthandHeightChanges = () => {
     switch (size) {
@@ -90,21 +92,27 @@ const Button = ({
     innerWidth: getWidthandHeightChanges().squareWidth,
     innerHeight: getWidthandHeightChanges().squareHeight,
     svgFill: disabled
-      ? Colors[`${buttonType}LightDisabled`]
+      ? buttonType
+        ? Colors[`${buttonType}LightDisabled`]
+        : disabledColor(bgColor)
       : buttonType
       ? isPressed
         ? Colors[`${buttonType}Light10`]
         : Colors[`${buttonType}Light`]
       : bgColor,
     svgStroke: disabled
-      ? Colors[`${buttonType}Dark10Disabled`]
+      ? buttonType
+        ? Colors[`${buttonType}Dark10Disabled`]
+        : Colors.primaryDisabled
       : buttonType
       ? Colors[`${buttonType}Dark10`]
       : isPressed
       ? 'grey'
       : Colors.primary,
     innerFill: disabled
-      ? Colors[`${buttonType}LightDisabled`]
+      ? buttonType
+        ? Colors[`${buttonType}LightDisabled`]
+        : disabledColor(bgColor)
       : buttonType
       ? outline
         ? bgColor
@@ -113,7 +121,9 @@ const Button = ({
         : Colors[`${buttonType}Light`]
       : bgColor,
     innerStroke: disabled
-      ? Colors[`${buttonType}LightDisabled`]
+      ? buttonType
+        ? Colors[`${buttonType}LightDisabled`]
+        : disabledColor(bgColor)
       : buttonType
       ? isPressed
         ? Colors[`${buttonType}Light10`]
@@ -122,39 +132,46 @@ const Button = ({
   };
 
   return (
-    <TouchableOpacity
-      onPressIn={() => setIsPressed(true)}
-      onPressOut={() => setIsPressed(false)}
-      onPress={
-        disabled ? () => {} : link ? () => Linking.openURL(link) : onPress
-      }
-      activeOpacity={1}
-      // style={style.buttonContainer}
-    >
-      <Border
-        borderType={borderType}
-        width={useButtonWidth(size)}
-        height={useButtonHeight(size)}
-        borderStyle={style.buttonContainer}
-        svgConfig={buttonSVGConfig}
-        additionalWidth={data.additionalWidth}
-        additionalHeight={data.additionalHeight}
+    <View style={style.mainContainer}>
+      <TouchableOpacity
+        onPressIn={() => setIsPressed(true)}
+        onPressOut={() => setIsPressed(false)}
+        onPress={
+          disabled ? () => {} : link ? () => Linking.openURL(link) : onPress
+        }
+        activeOpacity={1}
       >
-        <Text
-          onLayout={handleLayout}
-          style={{
-            ...style.title,
-            color: disabled
-              ? Colors[`${buttonType}DarkDisabled`]
-              : buttonType
-              ? Colors[`${buttonType}Dark`]
-              : textColor,
-          }}
+        <Border
+          borderType={borderType}
+          width={useButtonWidth(size)}
+          height={useButtonHeight(size)}
+          borderStyle={style.buttonContainer}
+          svgConfig={buttonSVGConfig}
+          additionalWidth={data.additionalWidth}
+          additionalHeight={data.additionalHeight}
         >
-          {children}
-        </Text>
-      </Border>
-    </TouchableOpacity>
+          <View style={style.titleWrapper}>
+            <Text
+              onLayout={handleLayout}
+              style={[
+                style.title,
+                {
+                  color: disabled
+                    ? buttonType
+                      ? Colors[`${buttonType}DarkDisabled`]
+                      : Colors.primaryDisabled
+                    : buttonType
+                    ? Colors[`${buttonType}Dark`]
+                    : textColor,
+                },
+              ]}
+            >
+              {children}
+            </Text>
+          </View>
+        </Border>
+      </TouchableOpacity>
+    </View>
   );
 };
 

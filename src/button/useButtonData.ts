@@ -17,27 +17,32 @@ interface Data {
 
 export const useButtonData = (
   size: ButtonSize,
-  block: boolean | undefined
+  block: boolean | undefined,
+  parentWidth: number | undefined
 ): [Styles, Data] => {
   const windowWidth = useWindowDimensions().width;
   const [titleWidthValue, setTitleWidthValue] = React.useState(0);
   const [titleHeightValue, setTitleHeightValue] = React.useState(0);
   const currentButtonWidth = useButtonWidth(size);
   const currentButtonHeight = useButtonHeight(size);
-  const additionalWidthForBlock = windowWidth - currentButtonWidth;
-  const additionalWidth =
-    (titleWidthValue > currentButtonWidth
-      ? titleWidthValue + 30 < windowWidth
-        ? titleWidthValue - currentButtonWidth + 30
-        : windowWidth - currentButtonWidth
-      : 0) + (block ? additionalWidthForBlock : 0);
+  const additionalWidthForBlock =
+    (parentWidth ? parentWidth : windowWidth) - currentButtonWidth;
+  const additionalWidth = block
+    ? additionalWidthForBlock
+    : titleWidthValue > currentButtonWidth
+    ? titleWidthValue + 30 < windowWidth
+      ? titleWidthValue - currentButtonWidth + 30
+      : windowWidth - currentButtonWidth
+    : 0;
   const additionalHeight =
     titleHeightValue > currentButtonHeight
       ? titleHeightValue - currentButtonHeight
       : 0;
   const style = buttonStyle({
     size,
-    childHeight: titleHeightValue,
+    titleWidthValue,
+    additionalWidth,
+    additionalHeight,
   });
   const data = {
     setTitleWidthValue,
