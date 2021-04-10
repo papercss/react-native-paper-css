@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react-native';
 import '@testing-library/jest-native';
-import Text, { TextColors } from '../../components/text/Text';
-import Colors from '../../constants/Colors';
-import { mainFont } from '../../constants/Fonts';
+import Text from './Text';
+import Colors, { ThemeColors } from '../constants/Colors';
+import { mainFont } from '../constants/Fonts';
 
 describe('Text', () => {
   afterEach(() => {
@@ -33,7 +33,7 @@ describe('Text', () => {
     });
   });
 
-  const colorPropSelections: TextColors[] = [
+  const colorPropSelections: ThemeColors[] = [
     'primary',
     'secondary',
     'danger',
