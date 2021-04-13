@@ -16,7 +16,9 @@ export default {
 const Template: Story<AlertProps & Props> = (args) => (
   <View style={style.parent}>
     {args.alerts.map((alert) => (
-      <Alert {...alert}>{alert.children}</Alert>
+      <Alert {...args} {...alert}>
+        {alert.children}
+      </Alert>
     ))}
   </View>
 );
