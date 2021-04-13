@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { View, ViewStyle } from 'react-native';
 import { Svg, Path, Rect } from 'react-native-svg';
 
-interface SVGConfig {
+export interface SVGConfig {
   svgWidth: number;
   svgHeight: number;
   innerWidth: number;
@@ -29,7 +29,7 @@ export interface Props {
   svgConfig: SVGConfig;
   additionalWidth?: number;
   additionalHeight?: number;
-  borderType: BorderType;
+  borderType?: BorderType;
 }
 
 interface PosXY {

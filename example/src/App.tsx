@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
-import { Button } from '../../src';
+import { Button, Alert } from '../../src';
 
 export default function App() {
   return (
@@ -10,6 +10,7 @@ export default function App() {
         <Button disabled outline size="large">
           Large
         </Button>
+        <Alert alertType="primary">This is an Alert message</Alert>
       </ScrollView>
     </SafeAreaView>
   );
