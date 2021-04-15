@@ -5,3 +5,4 @@ export {
 } from './headerText/HeaderText';
 export { default as Button, Props as ButtonProps } from './button/Button';
 export { default as Alert, Props as AlertProps } from './alert/Alert';
+export { default as Badges, Props as BadgesProps } from './badges/Badges';
