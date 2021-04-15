@@ -28,7 +28,7 @@ const HeaderText = ({
   }
 
   return (
-    <Text style={[getDefaultHeaderTextSize(headerSize), style]}>
+    <Text style={[getDefaultHeaderTextSize(headerSize).headerStyle, style]}>
       {otherProps.children}
     </Text>
   );

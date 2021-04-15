@@ -30,6 +30,7 @@ export interface Props {
   additionalWidth?: number;
   additionalHeight?: number;
   borderType?: BorderType;
+  customBorderType?: BorderTypeDataCoordinate;
 }
 
 interface PosXY {
@@ -67,53 +68,56 @@ const Border = ({
   additionalWidth = 0,
   additionalHeight = 0,
   borderType = 'borderType1',
+  customBorderType,
 }: Props) => {
   const getBorderTypeData = () => {
     const borderTypeData: BorderTypeData = {
-      borderType1: {
-        firstRad: {
-          x: 225,
-          y: 5,
-        },
-        secondRad: {
-          x: 15,
-          y: 225,
-        },
-        thirdRad: {
-          x: 625,
-          y: 10,
-        },
-        fourthRad: {
-          x: 15,
-          y: 225,
-        },
-        startingXY: {
-          x: 3,
-          y: 6,
-        },
-        topRightChanges: {
-          x: 0,
-          y: -3,
-        },
-        bottomRightChanges: {
-          x: 2,
-          y: 0,
-        },
-        bottomLeftChanges: {
-          x: 1,
-          y: 3,
-        },
-        topLeftChanges: {
-          x: -3,
-          y: -1,
-        },
-        innerBoxChanges: {
-          x: 2,
-          y: -1,
-          w: 0,
-          h: 0,
-        },
-      },
+      borderType1: customBorderType
+        ? customBorderType
+        : {
+            firstRad: {
+              x: 225,
+              y: 5,
+            },
+            secondRad: {
+              x: 15,
+              y: 225,
+            },
+            thirdRad: {
+              x: 625,
+              y: 10,
+            },
+            fourthRad: {
+              x: 15,
+              y: 225,
+            },
+            startingXY: {
+              x: 3,
+              y: 6,
+            },
+            topRightChanges: {
+              x: 0,
+              y: -3,
+            },
+            bottomRightChanges: {
+              x: 2,
+              y: 0,
+            },
+            bottomLeftChanges: {
+              x: 1,
+              y: 3,
+            },
+            topLeftChanges: {
+              x: -3,
+              y: -1,
+            },
+            innerBoxChanges: {
+              x: 2,
+              y: -1,
+              w: 0,
+              h: 0,
+            },
+          },
       borderType2: {
         firstRad: {
           x: 255,
