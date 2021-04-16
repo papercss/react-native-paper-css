@@ -62,3 +62,5 @@ lib/
 #storybook
 storybook-static/
 build/
+
+.env
