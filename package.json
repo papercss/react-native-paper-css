@@ -43,6 +43,9 @@
     "url": "https://github.com/papercss/react-native-paper-css/issues"
   },
   "homepage": "https://github.com/papercss/react-native-paper-css#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "@commitlint/config-conventional": "^11.0.0",
     "@emotion/native": "^11.0.0",
